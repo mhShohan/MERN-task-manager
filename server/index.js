@@ -29,6 +29,7 @@ app.use('/management', managementRoute);
 app.use('/sales', salesRoute);
 
 // Database Connection and server listening
+import { dataProduct, dataProductStat } from './data/data';
 const PORT = process.env.PORT;
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
