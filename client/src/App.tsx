@@ -1,5 +1,7 @@
+import AuthLayout from './layout/AuthLayout';
+
 const App = () => {
-  return <div>Hello</div>;
+  return <AuthLayout />;
 };
 
 export default App;
