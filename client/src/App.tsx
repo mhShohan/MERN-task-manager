@@ -1,7 +1,7 @@
-import AuthLayout from './layout/AuthLayout';
+import Login from './pages/Login';
 
 const App = () => {
-  return <AuthLayout />;
+  return <Login />;
 };
 
 export default App;

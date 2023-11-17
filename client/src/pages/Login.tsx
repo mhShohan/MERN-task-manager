@@ -3,7 +3,7 @@ import WavingHandIcon from '@mui/icons-material/WavingHand';
 import { Box, Grid, Typography } from '@mui/material';
 import LoginForm from '../components/LoginForm';
 
-const AuthLayout = () => {
+const Login = () => {
   return (
     <Grid container spacing={2} sx={{ padding: '0 20px' }}>
       <Grid item xs={7}>
@@ -36,4 +36,4 @@ const AuthLayout = () => {
   );
 };
 
-export default AuthLayout;
+export default Login;
