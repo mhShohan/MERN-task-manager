@@ -1,5 +1,5 @@
 {
-  "name": "mern-task-manager",
+  "name": "mern-task-manager-server",
   "version": "0.1.0",
   "description": "",
   "main": "server.js",
