@@ -1,36 +1,19 @@
-import loginBanner from '../assets/auth/login-banner.png';
-import WavingHandIcon from '@mui/icons-material/WavingHand';
 import { Box, Grid, Typography } from '@mui/material';
-import LoginForm from '../components/LoginForm';
 
-const AuthLayout = () => {
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Grid container spacing={2} sx={{ padding: '0 20px' }}>
+    <Grid container spacing={2} sx={{ height: '100vh' }}>
       <Grid item xs={7}>
-        <Box>
-          <img
-            src={loginBanner}
-            alt='login'
-            style={{ display: 'block', aspectRatio: '1/1', height: '95vh' }}
-          />
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="h3">Welcome to </Typography>
+            <Typography variant="h2">Task Manager App</Typography>
+            <Typography variant="h5">Create a your team and manage your tasks</Typography>
+          </Box>
         </Box>
       </Grid>
       <Grid item xs={5}>
-        <Box
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            justifyContent: 'center',
-          }}
-        >
-          <Typography variant='h4'>
-            Welcome
-            <WavingHandIcon />
-          </Typography>
-          <Typography variant='body2'>Please Login Here!</Typography>
-          <LoginForm />
-        </Box>
+        {children}
       </Grid>
     </Grid>
   );
