@@ -1,7 +1,8 @@
-import Login from './pages/Login';
+import { RouterProvider } from 'react-router-dom';
+import publicRoutes from './routes/publicRoutes';
 
 const App = () => {
-  return <Login />;
+  return <RouterProvider router={publicRoutes} />;
 };
 
 export default App;
