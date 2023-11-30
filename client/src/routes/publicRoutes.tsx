@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
+
+// project import
 import Login from '../pages/Login';
 import AuthLayout from '../layout/AuthLayout';
 import Register from '../pages/Register';
-// import AuthLayout from '../layout/AuthLayout';
 
 const publicRoutes = createBrowserRouter([
   {

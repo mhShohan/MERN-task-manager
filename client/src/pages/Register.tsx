@@ -1,4 +1,7 @@
+// mui
 import { Box, Typography } from '@mui/material';
+
+// project import
 import RegisterForm from '../components/RegisterForm';
 
 const Register = () => {

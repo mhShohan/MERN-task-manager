@@ -1,5 +1,7 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+
+// mui
+import { Box, Container, Grid, Typography } from '@mui/material';
 
 const AuthLayout = () => {
   return (
