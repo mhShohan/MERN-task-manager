@@ -1,21 +1,28 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+const AuthLayout = () => {
   return (
-    <Grid container spacing={2} sx={{ height: '100vh' }}>
-      <Grid item xs={7}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h3">Welcome to </Typography>
-            <Typography variant="h2">Task Manager App</Typography>
-            <Typography variant="h5">Create a your team and manage your tasks</Typography>
+    <Container>
+      <Grid container spacing={2} sx={{ height: '100vh' }}>
+        <Grid item xs={8}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h3" sx={{ fontWeight: '900' }}>
+                Welcome to{' '}
+              </Typography>
+              <Typography variant="h2" sx={{ fontWeight: '700' }}>
+                Task Manager App
+              </Typography>
+              <Typography variant="h5">Create a your team and manage your tasks</Typography>
+            </Box>
           </Box>
-        </Box>
+        </Grid>
+        <Grid item xs={4}>
+          <Outlet />
+        </Grid>
       </Grid>
-      <Grid item xs={5}>
-        {children}
-      </Grid>
-    </Grid>
+    </Container>
   );
 };
 
