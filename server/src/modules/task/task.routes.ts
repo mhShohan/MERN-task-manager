@@ -3,7 +3,7 @@ import { Router } from 'express';
 const router = Router();
 
 router.use('/', (req, res) => {
-    res.json({ message: 'hello' });
+  res.json({ message: 'hello' });
 });
 
 const taskRoutes = router;
