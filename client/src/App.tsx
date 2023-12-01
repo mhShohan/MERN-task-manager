@@ -2,18 +2,21 @@ import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 // mui
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 //project import
 import { store } from './store/store';
-import privateRoutes from './routes/privateRoutes';
-// import publicRoutes from './routes/publicRoutes';
+// import privateRoutes from './routes/privateRoutes';
+import theme from './theme/theme';
+import publicRoutes from './routes/publicRoutes';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <CssBaseline />
-      <RouterProvider router={privateRoutes} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={publicRoutes} />
+      </ThemeProvider>
     </Provider>
   );
 };

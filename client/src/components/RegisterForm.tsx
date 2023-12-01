@@ -69,7 +69,7 @@ const RegisterForm = () => {
         color="primary"
         sx={{ width: '100%', padding: '8px', borderRadius: '10px', marginTop: '6px' }}
       >
-        Login
+        Register
       </Button>
       <Box style={{ textAlign: 'center', marginTop: '10px' }}>
         <Typography variant="body1">

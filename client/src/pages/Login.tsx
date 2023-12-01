@@ -16,11 +16,11 @@ const Login = () => {
         textAlign: 'center'
       }}
     >
-      <Typography variant="h4">
+      <Typography variant="h4" sx={{ fontWeight: '700' }}>
         Welcome
         <WavingHandIcon />
       </Typography>
-      <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+      <Typography variant="body1" sx={{ marginBottom: '1rem', fontWeight: '500' }}>
         Please Login Here!
       </Typography>
       <LoginForm />

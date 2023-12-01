@@ -14,7 +14,7 @@ const Register = () => {
         height: '100%'
       }}
     >
-      <Typography variant="h5" sx={{ marginBottom: '1rem', textAlign: 'center' }}>
+      <Typography variant="h5" sx={{ marginBottom: '1rem', textAlign: 'center', fontWeight: '700' }}>
         Register A New Account!
       </Typography>
       <RegisterForm />
