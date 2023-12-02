@@ -1,11 +1,11 @@
-interface ISocialLinks {
+export interface ISocialLinks {
   github?: string;
   linkendin?: string;
   facebook?: string;
   twitter?: string;
 }
 
-interface IAddress {
+export interface IAddress {
   city: string;
   country: string;
 }

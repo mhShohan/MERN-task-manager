@@ -11,13 +11,11 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (_req: Request, res: Response) => {
-  res
-    .status(200)
-    .json({
-      success: true,
-      statusCode: 200,
-      message: 'Server is Working Successfully!',
-    });
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: 'Server is Working Successfully!',
+  });
 });
 
 // routes
