@@ -6,6 +6,7 @@ const validateRequestZod = (schema: AnyZodObject) => {
   return async (req: Request, _res: Response, next: NextFunction) => {
     try {
       await schema.parseAsync(req.body);
+      next()
     } catch (error) {
       const errors = zodErrorSanitize(error as ZodError);
 
