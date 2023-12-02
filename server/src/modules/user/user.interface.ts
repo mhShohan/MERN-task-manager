@@ -19,7 +19,7 @@ export interface IUser {
   title?: string;
   description?: string;
   avatar?: string;
-  status: 'ACTIVE' | 'BLOCK';
+  status?: 'ACTIVE' | 'BLOCK';
   address?: IAddress;
   links?: ISocialLinks;
 }

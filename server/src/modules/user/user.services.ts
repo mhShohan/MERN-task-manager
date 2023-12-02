@@ -3,13 +3,12 @@ import CustomError from '../../utils/customError';
 import { IUser } from './user.interface';
 import User from './user.model';
 
-const userServices: Record<string, unknown> = {};
 
-userServices.create = async (userData: IUser) => {
+const create = async (userData: IUser) => {
   return await User.create(userData);
 };
 
-userServices.login = async (userData: { email: string; password: string }) => {
+const login = async (userData: { email: string; password: string }) => {
   const isUserExists = await User.findOne({ email: userData.email });
 
   if (isUserExists) {
@@ -24,5 +23,7 @@ userServices.login = async (userData: { email: string; password: string }) => {
     throw new CustomError(404, 'User Not Found!');
   }
 };
+
+const userServices = { create, login }
 
 export default userServices;

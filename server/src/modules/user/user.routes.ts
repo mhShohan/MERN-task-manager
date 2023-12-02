@@ -1,11 +1,11 @@
 import { Router } from 'express';
+import userController from './user.controllers';
+import validateRequestZod from '../../middleware/validateRequestZod';
+import userValidator from './user.validator';
 
-const router = Router();
+const userRoutes = Router();
 
-router.use('/', (req, res) => {
-  res.json({ message: 'hello' });
-});
+userRoutes.post('/register', validateRequestZod(userValidator.validateToCreate), userController.register);
 
-const userRoutes = router;
 
 export default userRoutes;
