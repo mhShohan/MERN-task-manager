@@ -3,7 +3,6 @@ import CustomError from '../../utils/customError';
 import { IUser } from './user.interface';
 import User from './user.model';
 
-
 const create = async (userData: IUser) => {
   return await User.create(userData);
 };
@@ -24,6 +23,6 @@ const login = async (userData: { email: string; password: string }) => {
   }
 };
 
-const userServices = { create, login }
+const userServices = { create, login };
 
 export default userServices;

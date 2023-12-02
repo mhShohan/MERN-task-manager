@@ -5,7 +5,10 @@ import userValidator from './user.validator';
 
 const userRoutes = Router();
 
-userRoutes.post('/register', validateRequestZod(userValidator.validateToCreate), userController.register);
-
+userRoutes.post(
+  '/register',
+  validateRequestZod(userValidator.validateToCreate),
+  userController.register,
+);
 
 export default userRoutes;

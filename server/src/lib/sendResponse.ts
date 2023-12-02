@@ -1,10 +1,10 @@
-import { Response } from "express"
+import { Response } from 'express';
 
 interface IResponse<T> {
-  statusCode: number
-  success: boolean
-  message: string
-  data: T
+  statusCode: number;
+  success: boolean;
+  message: string;
+  data: T;
 }
 
 const sendResponse = <T>(res: Response, responses: IResponse<T>) => {
@@ -12,8 +12,8 @@ const sendResponse = <T>(res: Response, responses: IResponse<T>) => {
     statusCode: responses.statusCode,
     success: responses.success,
     message: responses.message,
-    data: responses.data
-  })
-}
+    data: responses.data,
+  });
+};
 
-export default sendResponse
+export default sendResponse;
