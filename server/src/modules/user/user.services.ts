@@ -24,8 +24,8 @@ const login = async (userData: { email: string; password: string }) => {
 };
 
 const getUser = async (id: string) => {
-  return await User.findById(id)
-}
+  return await User.findById(id);
+};
 
 const userServices = { create, login, getUser };
 

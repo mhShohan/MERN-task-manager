@@ -14,15 +14,15 @@ const register = asyncHandler(async (req, res) => {
 });
 
 const getSingleUser = asyncHandler(async (req, res) => {
-  const user = await userServices.getUser(req.params.id)
+  const user = await userServices.getUser(req.params.id);
 
   sendResponse(res, {
-    statusCode: 201,
+    statusCode: 200,
     success: true,
     message: 'User retrieved successfully!',
     data: user,
   });
-})
+});
 
 const userController = { register, getSingleUser };
 

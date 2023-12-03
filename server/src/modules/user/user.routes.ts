@@ -10,6 +10,6 @@ userRoutes.post(
   validateRequestZod(userValidator.validateToCreate),
   userController.register,
 );
-userRoutes.get('/:id', userController.getSingleUser)
+userRoutes.get('/:id', userController.getSingleUser);
 
 export default userRoutes;
