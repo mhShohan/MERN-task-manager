@@ -29,10 +29,9 @@ const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     errorResponse.message = 'Validation failed!';
     errorResponse.errors = errors;
   } else if (err?.name === 'CastError') {
-    // @TODO sanitize the CastError
     const errors = handleCastError(err as mongoose.Error.CastError);
     errorResponse.statusCode = 400;
-    errorResponse.message = 'Invalid Id!';
+    errorResponse.message = 'Invalid field!';
     errorResponse.errors = errors;
   } else if (err?.code === 11000) {
     const errors = handleDuplicateError(err);
@@ -45,7 +44,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     errorResponse.errors = {};
   }
 
-  return res.status(err.statusCode || 500).json(errorResponse);
+  return res.status(errorResponse.statusCode).json(errorResponse);
 };
 
 export default globalErrorHandler;

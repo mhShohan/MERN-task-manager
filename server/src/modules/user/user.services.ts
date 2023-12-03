@@ -23,6 +23,10 @@ const login = async (userData: { email: string; password: string }) => {
   }
 };
 
-const userServices = { create, login };
+const getUser = async (id: string) => {
+  return await User.findById(id)
+}
+
+const userServices = { create, login, getUser };
 
 export default userServices;

@@ -13,6 +13,17 @@ const register = asyncHandler(async (req, res) => {
   });
 });
 
-const userController = { register };
+const getSingleUser = asyncHandler(async (req, res) => {
+  const user = await userServices.getUser(req.params.id)
+
+  sendResponse(res, {
+    statusCode: 201,
+    success: true,
+    message: 'User retrieved successfully!',
+    data: user,
+  });
+})
+
+const userController = { register, getSingleUser };
 
 export default userController;
