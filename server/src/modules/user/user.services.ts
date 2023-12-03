@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import CustomError from '../../utils/customError';
+import CustomError from '../../errorHandler/customError';
 import { IUser } from './user.interface';
 import User from './user.model';
 
