@@ -28,8 +28,8 @@ const getUser = async (id: string) => {
 };
 
 const getAllUser = async () => {
-  return await User.find()
-}
+  return await User.find();
+};
 
 const userServices = { create, login, getUser, getAllUser };
 

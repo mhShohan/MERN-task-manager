@@ -1,23 +1,22 @@
-import CustomError from "./customError"
+import CustomError from './customError';
 
 const handleCustomError = (err: CustomError) => {
   let errorResponse: Record<string, unknown> = {};
 
   if (err.type === 'WrongCredentials') {
     errorResponse = {
-      'email': {
+      email: {
         path: 'email',
-        message: 'Wrong Credentials'
+        message: 'Wrong Credentials',
       },
-      'password': {
+      password: {
         path: 'password',
-        message: 'Wrong Credentials'
+        message: 'Wrong Credentials',
       },
-    }
+    };
   }
 
-  return errorResponse
-}
+  return errorResponse;
+};
 
-
-export default handleCustomError
+export default handleCustomError;

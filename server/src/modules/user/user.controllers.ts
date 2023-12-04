@@ -6,7 +6,7 @@ import userServices from './user.services';
 const register = asyncHandler(async (req, res) => {
   const user = await userServices.create(req.body);
 
-  const token = generateToken({ _id: user._id, email: user.email })
+  const token = generateToken({ _id: user._id, email: user.email });
 
   sendResponse(res, {
     statusCode: 201,
@@ -28,9 +28,9 @@ const getSingleUser = asyncHandler(async (req, res) => {
 });
 
 const login = asyncHandler(async (req, res) => {
-  const user = await userServices.login(req.body)
+  const user = await userServices.login(req.body);
 
-  const token = generateToken({ _id: user._id, email: user.email })
+  const token = generateToken({ _id: user._id, email: user.email });
 
   sendResponse(res, {
     statusCode: 200,
@@ -38,10 +38,10 @@ const login = asyncHandler(async (req, res) => {
     message: 'Login successfully!',
     data: { token },
   });
-})
+});
 
 const getAll = asyncHandler(async (_req, res) => {
-  const users = await userServices.getAllUser()
+  const users = await userServices.getAllUser();
 
   sendResponse(res, {
     statusCode: 200,
@@ -49,7 +49,7 @@ const getAll = asyncHandler(async (_req, res) => {
     message: 'All Users retrieved successfully!',
     data: users,
   });
-})
+});
 
 const userController = { register, getSingleUser, login, getAll };
 

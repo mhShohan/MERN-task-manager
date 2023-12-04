@@ -40,7 +40,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     errorResponse.message = 'Duplicate field Error!';
     errorResponse.errors = errors;
   } else if (err instanceof CustomError) {
-    const errors = handleCustomError(err)
+    const errors = handleCustomError(err);
     errorResponse.statusCode = err.statusCode;
     errorResponse.message = err.message;
     errorResponse.errors = errors;
