@@ -9,6 +9,7 @@ import handleValidationError from './handleValidationError';
 import handleCastError from './handleCastError';
 import handleDuplicateError from './handleDuplicateError';
 import CustomError from './customError';
+import handleCustomError from './handleCustomError';
 
 const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   const errorResponse = {
@@ -39,9 +40,10 @@ const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     errorResponse.message = 'Duplicate field Error!';
     errorResponse.errors = errors;
   } else if (err instanceof CustomError) {
+    const errors = handleCustomError(err)
     errorResponse.statusCode = err.statusCode;
     errorResponse.message = err.message;
-    errorResponse.errors = {};
+    errorResponse.errors = errors;
   }
 
   return res.status(errorResponse.statusCode).json(errorResponse);

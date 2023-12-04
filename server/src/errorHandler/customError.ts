@@ -1,9 +1,10 @@
 class CustomError extends Error {
   public statusCode: number;
-
-  constructor(statusCode: number, message: string) {
+  public type: string = ''
+  constructor(statusCode: number, message: string, type: string = '') {
     super(message);
     this.statusCode = statusCode;
+    this.type = type
   }
 }
 

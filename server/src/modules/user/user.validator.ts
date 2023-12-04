@@ -41,6 +41,12 @@ const validateToUpdate = z.object({
     .optional(),
 });
 
-const userValidator = { validateToCreate, validateToUpdate };
+
+const validateToLogin = z.object({
+  email: z.string(zodMessage('email')).email({ message: 'Must Provide an email!' }).trim(),
+  password: z.string(zodMessage('password')).trim()
+})
+
+const userValidator = { validateToCreate, validateToUpdate, validateToLogin };
 
 export default userValidator;
