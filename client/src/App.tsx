@@ -6,7 +6,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 //project import
 import { store } from './store/store';
-// import privateRoutes from './routes/privateRoutes';
+import privateRoutes from './routes/privateRoutes';
 import theme from './theme/theme';
 import publicRoutes from './routes/publicRoutes';
 
@@ -15,7 +15,7 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <RouterProvider router={publicRoutes} />
+        <RouterProvider router={privateRoutes ? privateRoutes : publicRoutes} />
       </ThemeProvider>
     </Provider>
   );
