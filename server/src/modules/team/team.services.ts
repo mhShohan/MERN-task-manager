@@ -1,11 +1,10 @@
-import { ITeam } from "./team.interface"
-import Team from "./team.model"
+import { ITeam } from './team.interface';
+import Team from './team.model';
 
 const createTeam = async (payload: ITeam) => {
-  return await Team.create(payload)
-}
+  return await Team.create(payload);
+};
 
+const teamServices = { createTeam };
 
-const teamServices = { createTeam }
-
-export default teamServices 
+export default teamServices;

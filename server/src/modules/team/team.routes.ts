@@ -5,6 +5,10 @@ import teamValidator from './team.validator';
 
 const teamRoutes = Router();
 
-teamRoutes.post('/', validateRequestZod(teamValidator.createTeamSchema), teamController.createTeam)
+teamRoutes.post(
+  '/',
+  validateRequestZod(teamValidator.createTeamSchema),
+  teamController.createTeam,
+);
 
 export default teamRoutes;

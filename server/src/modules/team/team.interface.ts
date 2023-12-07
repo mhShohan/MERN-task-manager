@@ -1,7 +1,7 @@
-import { Types } from "mongoose"
+import { Types } from 'mongoose';
 
 export interface ITeam {
-  name: string
-  userId: Types.ObjectId
-  role: 'CREATOR' | 'MEMBER'
+  name: string;
+  userId: Types.ObjectId;
+  role: 'CREATOR' | 'MEMBER';
 }
