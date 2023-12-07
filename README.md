@@ -17,8 +17,8 @@
 # Team Model
 
     - name
-    - creator
-    - members
+    - userId
+    - role
 
 # Task Model
 
