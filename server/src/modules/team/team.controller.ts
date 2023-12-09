@@ -3,7 +3,9 @@ import sendResponse from '../../lib/sendResponse';
 import teamServices from './team.services';
 
 const createTeam = asyncHandler(async (req, res) => {
-  const team = await teamServices.createTeam(req.body);
+  const name = req.body.name
+  const creatorId = req.user._id
+  const team = await teamServices.createTeam({ name, creatorId });
 
   sendResponse(res, {
     statusCode: 201,
