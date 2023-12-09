@@ -10,5 +10,12 @@ teamRoutes.post(
   validateRequestZod(teamValidator.createTeamSchema),
   teamController.createTeam,
 );
+teamRoutes.delete('/:id', teamController.deleteTeam);
+
+teamRoutes.post(
+  '/:id',
+  validateRequestZod(teamValidator.updateTeamSchema),
+  teamController.updateTeam,
+);
 
 export default teamRoutes;

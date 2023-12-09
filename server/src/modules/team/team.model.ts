@@ -8,16 +8,9 @@ const teamSchema = new Schema<ITeam>(
       required: [true, 'Team name is required!'],
       trim: true,
     },
-    userId: {
+    creatorId: {
       type: Schema.Types.ObjectId,
-      required: [true, 'Team name is required!'],
-    },
-    role: {
-      type: String,
-      enum: {
-        values: ['CREATOR', 'MEMBER'],
-        message: '{VALUE}',
-      },
+      required: [true, 'UserId is required!'],
     },
   },
   { timestamps: true },

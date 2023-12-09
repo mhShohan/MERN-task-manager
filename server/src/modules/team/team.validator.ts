@@ -3,10 +3,13 @@ import zodMessage from '../../utils/zodMessage';
 
 const createTeamSchema = z.object({
   name: z.string(zodMessage('name')).trim(),
-  userId: z.string(zodMessage('userId')).trim(),
-  role: z.enum(['CREATOR', 'MEMBER']),
+  creatorId: z.string(zodMessage('creatorId')).trim(), // @TODO
 });
 
-const teamValidator = { createTeamSchema };
+const updateTeamSchema = z.object({
+  name: z.string(zodMessage('name')).trim(),
+});
+
+const teamValidator = { createTeamSchema, updateTeamSchema };
 
 export default teamValidator;
