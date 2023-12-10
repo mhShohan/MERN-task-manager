@@ -5,7 +5,7 @@ import CustomError from '../errorHandler/customError';
 import User from '../modules/user/user.model';
 import { Types } from 'mongoose';
 
-interface MiddlewareRequest extends Request {
+interface CustomRequest extends Request {
   user: {
     _id?: Types.ObjectId;
     email?: string;
@@ -20,7 +20,7 @@ interface JWTPayload {
 }
 
 const verifyAuth = async (
-  req: MiddlewareRequest,
+  req: CustomRequest,
   _res: Response,
   next: NextFunction,
 ) => {
