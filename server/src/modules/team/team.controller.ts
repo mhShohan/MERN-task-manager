@@ -3,8 +3,8 @@ import sendResponse from '../../lib/sendResponse';
 import teamServices from './team.services';
 
 const createTeam = asyncHandler(async (req, res) => {
-  const name = req.body.name
-  const creatorId = req.user._id
+  const name = req.body.name;
+  const creatorId = req.user._id;
   const team = await teamServices.createTeam({ name, creatorId });
 
   sendResponse(res, {
@@ -37,6 +37,17 @@ const updateTeam = asyncHandler(async (req, res) => {
   });
 });
 
-const teamController = { createTeam, deleteTeam, updateTeam };
+const GetAllTeam = asyncHandler(async (req, res) => {
+  const teams = await teamServices.getAllTeamOfCreator(req.user._id);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Team Retrieves successfully!',
+    data: teams,
+  });
+});
+
+const teamController = { createTeam, deleteTeam, updateTeam, GetAllTeam };
 
 export default teamController;

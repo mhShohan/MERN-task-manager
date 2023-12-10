@@ -12,10 +12,12 @@ teamRoutes.post(
   validateRequestZod(teamValidator.createTeamSchema),
   teamController.createTeam,
 );
-teamRoutes.delete('/:id', teamController.deleteTeam);
+teamRoutes.delete('/:id', verifyAuth, teamController.deleteTeam);
+teamRoutes.get('/self-teams', verifyAuth, teamController.GetAllTeam);
 
 teamRoutes.patch(
   '/:id',
+  verifyAuth,
   validateRequestZod(teamValidator.updateTeamSchema),
   teamController.updateTeam,
 );
