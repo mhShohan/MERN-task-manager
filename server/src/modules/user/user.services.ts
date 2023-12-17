@@ -7,13 +7,13 @@ const create = async (userData: IUser) => {
   return await User.create(userData);
 };
 
-const login = async (userData: { email: string; password: string }) => {
-  const isUserExists = await User.findOne({ email: userData.email });
+const login = async (payload: { email: string; password: string }) => {
+  const user = await User.findOne({ email: payload.email }).select('+password');
 
-  if (isUserExists) {
-    const matchPassword = await bcrypt.compare(userData.password, isUserExists.password);
+  if (user) {
+    const matchPassword = await bcrypt.compare(payload.password, user.password);
 
-    if (matchPassword) return isUserExists;
+    if (matchPassword) return user;
     else throw new CustomError(400, 'Wrong Credentials!', 'WrongCredentials');
   } else {
     throw new CustomError(404, 'User Not Found!', 'WrongCredentials');
