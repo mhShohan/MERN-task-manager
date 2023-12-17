@@ -12,10 +12,6 @@ userRoutes.post(
 );
 userRoutes.get('/', userController.getAll);
 userRoutes.get('/:id', userController.getSingleUser);
-userRoutes.post(
-  '/login',
-  validateRequestZod(userValidator.validateToLogin),
-  userController.login,
-);
+userRoutes.post('/login', validateRequestZod(userValidator.validateToLogin), userController.login);
 
 export default userRoutes;

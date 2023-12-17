@@ -11,10 +11,7 @@ const login = async (userData: { email: string; password: string }) => {
   const isUserExists = await User.findOne({ email: userData.email });
 
   if (isUserExists) {
-    const matchPassword = await bcrypt.compare(
-      userData.password,
-      isUserExists.password,
-    );
+    const matchPassword = await bcrypt.compare(userData.password, isUserExists.password);
 
     if (matchPassword) return isUserExists;
     else throw new CustomError(400, 'Wrong Credentials!', 'WrongCredentials');

@@ -6,10 +6,7 @@ const createTeam = async (payload: ITeam) => {
   const teamWithCreatorId = await Team.findOne(payload);
 
   if (teamWithCreatorId) {
-    throw new CustomError(
-      400,
-      'Team is already exists with the name: ' + payload.name,
-    );
+    throw new CustomError(400, 'Team is already exists with the name: ' + payload.name);
   }
 
   return await Team.create(payload);
@@ -27,10 +24,7 @@ const updateTeamName = async (id: string, data: { name: string }) => {
   });
 
   if (teamWithCreatorId) {
-    throw new CustomError(
-      400,
-      'Team is already exists with the name: ' + data.name,
-    );
+    throw new CustomError(400, 'Team is already exists with the name: ' + data.name);
   }
 
   return await Team.findByIdAndUpdate(id, data, { new: true });

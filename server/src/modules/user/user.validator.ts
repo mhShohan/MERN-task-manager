@@ -42,10 +42,7 @@ const validateToUpdate = z.object({
 });
 
 const validateToLogin = z.object({
-  email: z
-    .string(zodMessage('email'))
-    .email({ message: 'Must Provide an email!' })
-    .trim(),
+  email: z.string(zodMessage('email')).email({ message: 'Must Provide an email!' }).trim(),
   password: z.string(zodMessage('password')).trim(),
 });
 

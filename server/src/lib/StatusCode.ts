@@ -1,5 +1,5 @@
-import httpStatus from 'http-status'
+import httpStatus from 'http-status';
 
-const StatusCode = httpStatus
+const StatusCode = httpStatus;
 
-export default StatusCode
+export default StatusCode;
