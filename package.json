@@ -1,0 +1,16 @@
+{
+  "name": "mern-task-manager",
+  "version": "1.0.0",
+  "description": "- firstName\r     - lastName\r     - email\r     - password\r     - birthDate\r     - title\r     - description\r     - avatar\r     - status\r     - address\r     - links",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}

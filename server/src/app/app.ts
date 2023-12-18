@@ -7,6 +7,22 @@ import morgan from 'morgan';
 
 const app: Application = express();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //parsers
 app.use(express.json());
 app.use(cors());
