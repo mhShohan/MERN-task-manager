@@ -48,7 +48,7 @@ const useSchema = new Schema<IUser>(
       trim: true,
       min: [6, 'Must have 6 characters'],
       max: [20, 'Not more then 20 characters'],
-      select: 0
+      select: 0,
     },
     title: { type: String },
     birthDate: { type: String },

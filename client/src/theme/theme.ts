@@ -10,9 +10,8 @@ let theme = createTheme({
     secondary: {
       main: '#3E432E',
       light: '#BBE1FA'
-    },
-  },
+    }
+  }
 });
 
-
-export default theme
+export default theme;
