@@ -8,14 +8,9 @@ const axiosSecure = axios.create({
 axiosSecure.interceptors.request.use((conf) => {
   const token = localStorage.getItem('accessToken');
 
-
-
   if (token) {
     conf.headers.Authorization = `Bearer ${token}`;
   }
-
-
-
 
   return conf;
 });
