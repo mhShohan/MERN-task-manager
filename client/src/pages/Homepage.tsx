@@ -8,6 +8,7 @@ const Homepage = () => {
       console.log(res);
     })();
   }, []);
+
   return <div>Homepage</div>;
 };
 
