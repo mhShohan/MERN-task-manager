@@ -11,16 +11,16 @@ const verifyAuth: RequestHandler = (req, _res, next) => {
     const token = bearerToken.split(' ')[1];
 
     if (token) {
-      const decode = jwt.verify(token, config.jwt_secret as string) as JwtPayload;
+      try {
+        const decode = jwt.verify(token, config.jwt_secret as string) as JwtPayload;
 
-      if (decode) {
         req.user = {
           _id: decode?._id,
           email: decode?.email,
         };
 
         next();
-      } else {
+      } catch (error) {
         throw new CustomError(StatusCode.UNAUTHORIZED, 'Unauthorize! please login', 'Unauthorize');
       }
     } else {

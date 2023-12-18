@@ -15,12 +15,14 @@ axiosSecure.interceptors.request.use((conf) => {
   return conf;
 });
 
-export const getRequest = async (url: string) => {
+export const verifyToken = async (url: string) => {
   try {
     const res = await axiosSecure.get(url);
 
-    return { data: res.data, error: null };
+    return res;
   } catch (err: any) {
-    return { data: null, error: err.response.data };
+    console.log(err);
+
+    return err.response;
   }
 };

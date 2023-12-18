@@ -1,23 +1,26 @@
 import { RouterProvider } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 // mui
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
 
 //project import
-import { store } from './store/store';
 import privateRoutes from './routes/privateRoutes';
-import theme from './theme/theme';
 import publicRoutes from './routes/publicRoutes';
+import theme from './theme/theme';
+import { useGetAuthQuery } from './store/features/authApi';
 
 const App = () => {
+  const { isLoading, data } = useGetAuthQuery();
+
+  if (isLoading) {
+    return <LinearProgress />;
+  }
+
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <RouterProvider router={privateRoutes ? privateRoutes : publicRoutes} />
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={data?.data?.isAuthenticated ? privateRoutes : publicRoutes} />
+    </ThemeProvider>
   );
 };
 

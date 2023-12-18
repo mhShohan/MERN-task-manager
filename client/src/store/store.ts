@@ -1,13 +1,13 @@
 import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
-import { taskApi } from './features/taskApi';
+import { authApi } from './features/authApi';
 import userReducer from './services/userSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    [taskApi.reducerPath]: taskApi.reducer
+    [authApi.reducerPath]: authApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([taskApi.middleware])
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([authApi.middleware])
 });
 
 export type RootState = ReturnType<typeof store.getState>;
