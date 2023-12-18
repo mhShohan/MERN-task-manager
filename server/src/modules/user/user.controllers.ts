@@ -1,3 +1,4 @@
+import CustomError from '../../errorHandler/customError';
 import StatusCode from '../../lib/StatusCode';
 import asyncHandler from '../../lib/asyncHandler';
 import sendResponse from '../../lib/sendResponse';
@@ -52,6 +53,19 @@ const getAll = asyncHandler(async (_req, res) => {
   });
 });
 
-const userController = { register, getSingleUser, login, getAll };
+const authVerification = asyncHandler(async (req, res) => {
+  const user = await userServices.getUser(req.user._id)
+
+  if (!user) throw new CustomError(StatusCode.UNAUTHORIZED, 'Unauthorize! please login', 'Unauthorize');
+
+  sendResponse(res, {
+    statusCode: StatusCode.OK,
+    success: true,
+    message: 'User verified successfully!',
+    data: { isAuthenticated: true },
+  });
+})
+
+const userController = { register, getSingleUser, login, getAll, authVerification };
 
 export default userController;

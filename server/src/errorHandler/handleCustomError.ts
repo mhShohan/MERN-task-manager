@@ -16,6 +16,10 @@ const handleCustomError = (err: CustomError) => {
     };
   }
 
+  if (err.type === 'Unauthorize') {
+    errorResponse = { isAuthenticated: false }
+  }
+
   return errorResponse;
 };
 
