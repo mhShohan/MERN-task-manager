@@ -15,18 +15,29 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import { useLoginMutation } from '../store/features/authApi';
+import Loader from './Loader';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginAccount, { isLoading }] = useLoginMutation();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
 
-  const login = (data: any) => {
-    console.log(data);
+  const login = async (data: any) => {
+    try {
+      await loginAccount(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <form style={{ maxWidth: '100%' }} onSubmit={handleSubmit(login)}>
