@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 // mui
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -14,22 +15,58 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConformShowPassword] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+  const registerAccount = (data: any) => {
+    console.log(data);
+    if (data.password !== data.confirmPassword) {
+      toast.error('Confirm password must be same to the password!');
+      return;
+    }
+  };
 
   return (
-    <form style={{ maxWidth: '100%' }}>
-      <TextField fullWidth variant="filled" color="primary" size="small" label="First Name" />
-      <TextField fullWidth variant="filled" color="primary" size="small" label="Last Name" />
-      <TextField fullWidth variant="filled" color="primary" size="small" label="Email Address" />
+    <form style={{ maxWidth: '100%' }} onSubmit={handleSubmit(registerAccount)}>
+      <TextField
+        fullWidth
+        variant="filled"
+        size="small"
+        color={errors['firstName'] ? 'error' : 'primary'}
+        label="First Name"
+        {...register('firstName', { required: true })}
+      />
+      <TextField
+        fullWidth
+        variant="filled"
+        color={errors['lastName'] ? 'error' : 'primary'}
+        size="small"
+        label="Last Name"
+        {...register('lastName', { required: true })}
+      />
+      <TextField
+        fullWidth
+        variant="filled"
+        color={errors['email'] ? 'error' : 'primary'}
+        size="small"
+        label="Email Address"
+        {...register('email', { required: true })}
+      />
 
-      <FormControl variant="filled" size="small" fullWidth>
+      <FormControl variant="filled" size="small" fullWidth color={errors['password'] ? 'error' : 'primary'}>
         <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
         <FilledInput
           id="filled-adornment-password"
           type={showPassword ? 'text' : 'password'}
+          {...register('password', { required: true })}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -44,10 +81,11 @@ const RegisterForm = () => {
           }
         />
       </FormControl>
-      <FormControl variant="filled" size="small" fullWidth>
+      <FormControl variant="filled" size="small" fullWidth color={errors['confirmPassword'] ? 'error' : 'primary'}>
         <InputLabel htmlFor="filled-adornment-password">Confirm Password</InputLabel>
         <FilledInput
           id="filled-adornment-password"
+          {...register('confirmPassword', { required: true })}
           type={showConfirmPassword ? 'text' : 'password'}
           endAdornment={
             <InputAdornment position="end">
@@ -67,6 +105,7 @@ const RegisterForm = () => {
       <Button
         variant="contained"
         color="primary"
+        type="submit"
         sx={{ width: '100%', padding: '8px', borderRadius: '10px', marginTop: '6px' }}
       >
         Register

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 // mui
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -17,16 +18,33 @@ import {
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+  const login = (data: any) => {
+    console.log(data);
+  };
 
   return (
-    <form style={{ maxWidth: '100%' }}>
-      <TextField fullWidth variant="filled" color="primary" size="small" label="Email Address" />
+    <form style={{ maxWidth: '100%' }} onSubmit={handleSubmit(login)}>
+      <TextField
+        fullWidth
+        variant="filled"
+        color={errors['email'] ? 'error' : 'primary'}
+        size="small"
+        label="Email Address"
+        {...register('email', { required: true })}
+      />
 
-      <FormControl variant="filled" size="small" fullWidth>
+      <FormControl variant="filled" size="small" fullWidth color={errors['password'] ? 'error' : 'primary'}>
         <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
         <FilledInput
           id="filled-adornment-password"
           type={showPassword ? 'text' : 'password'}
+          {...register('password', { required: true })}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -45,6 +63,7 @@ const LoginForm = () => {
       <Button
         variant="contained"
         color="primary"
+        type="submit"
         sx={{ marginTop: '10px', width: '100%', padding: '8px', borderRadius: '6px' }}
       >
         Login
