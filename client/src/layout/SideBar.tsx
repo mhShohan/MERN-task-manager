@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 // mui
 import AppBar from '@mui/material/AppBar';
@@ -19,6 +19,7 @@ import { useTheme } from '@mui/material/styles';
 // project import
 import { sideBarData } from '../constants/constant';
 import { ListItem, ListItemIcon, ListItemText } from '../components/extends/SideBar';
+import { Button } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -34,6 +35,7 @@ export default function SideBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -61,6 +63,14 @@ export default function SideBar(props: Props) {
     </div>
   );
 
+  /**
+   * Logout handler - remove accessToken from localStorage
+   */
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate(0);
+  };
+
   // Remove this const when copying and pasting into your project.
   const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -74,7 +84,7 @@ export default function SideBar(props: Props) {
           ml: { sm: `${drawerWidth}px` }
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -87,6 +97,9 @@ export default function SideBar(props: Props) {
           <Typography variant="h6" noWrap component="div">
             Responsive drawer
           </Typography>
+          <Button onClick={handleLogout} variant="contained" color="info">
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
       <Box

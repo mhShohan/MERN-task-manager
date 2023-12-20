@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 // mui
@@ -17,10 +17,13 @@ import {
 } from '@mui/material';
 import { useLoginMutation } from '../store/features/authApi';
 import Loader from './Loader';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginAccount, { isLoading }] = useLoginMutation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -30,8 +33,9 @@ const LoginForm = () => {
   const login = async (data: any) => {
     try {
       await loginAccount(data);
+      navigate(0);
     } catch (error) {
-      console.log(error);
+      toast.error('Error');
     }
   };
 

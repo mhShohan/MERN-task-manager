@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 // project import
 import config from '../../utils/config';
-import { IUserLogin } from '../../interfaces/user.interface';
+import { IUser, IUserLogin } from '../../interfaces/user.interface';
 
 
 const fetch = async () => {
@@ -21,7 +21,6 @@ const login = async (payload: IUserLogin) => {
 
     if (result.data.statusCode === 200 && result.data.success) {
       toast.success(result.data.message)
-      window.location.reload();
     }
 
     return result
@@ -33,9 +32,25 @@ const login = async (payload: IUserLogin) => {
 
 }
 
-// const register = async (payload: IUser) => {
-//   return await axios.post(config.baseUrl + '/users/register', payload)
-// }
+const register = async (payload: IUser) => {
+  try {
+    const result = await axios.post(config.baseUrl + '/users/register', payload)
+
+    if (result?.data?.data?.token) {
+      localStorage.setItem('accessToken', result?.data?.data?.token)
+    }
+
+    if (result.data.statusCode === 201 && result.data.success) {
+      toast.success(result.data.message)
+    }
+
+    return result
+  } catch (error: any) {
+    if (!error.response.data.success) {
+      toast.error(error.response.data.message)
+    }
+  }
+}
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -45,8 +60,12 @@ export const authApi = createApi({
     login: builder.mutation({
       query: login,
       invalidatesTags: ['auth']
+    }),
+    register: builder.mutation({
+      query: register,
+      invalidatesTags: ['auth']
     })
   })
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation } = authApi;
