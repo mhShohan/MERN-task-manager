@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 // mui
@@ -15,22 +16,34 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { toast } from 'react-toastify';
+
+//project import
+import { useRegisterMutation } from '../store/features/authApi';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConformShowPassword] = useState(false);
+  const [registerMutation] = useRegisterMutation();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
 
-  const registerAccount = (data: any) => {
-    console.log(data);
-    if (data.password !== data.confirmPassword) {
-      toast.error('Confirm password must be same to the password!');
-      return;
+  const registerAccount = async (data: any) => {
+    try {
+      const { firstName, lastName, email, password } = data;
+      if (data.password !== data.confirmPassword) {
+        toast.error('Confirm password must be same to the password!');
+        return;
+      }
+
+      await registerMutation({ firstName, lastName, email, password });
+      navigate('/');
+      navigate(0);
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 

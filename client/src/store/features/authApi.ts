@@ -8,7 +8,7 @@ import { IUser, IUserLogin } from '../../interfaces/user.interface';
 
 
 const fetch = async () => {
-  return await axios.get(config.baseUrl);
+  return await axios.get(config.healthUrl);
 };
 
 const login = async (payload: IUserLogin) => {

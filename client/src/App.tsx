@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // mui
 import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
@@ -10,7 +11,6 @@ import privateRoutes from './routes/privateRoutes';
 import publicRoutes from './routes/publicRoutes';
 import theme from './theme/theme';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { useEffect } from 'react';
 import { getAuth } from './store/services/authSlice';
 
 const App = () => {
