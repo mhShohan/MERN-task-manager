@@ -18,11 +18,8 @@ axiosSecure.interceptors.request.use((conf) => {
 export const verifyToken = async (url: string) => {
   try {
     const res = await axiosSecure.get(url);
-
     return res;
   } catch (err: any) {
-    console.log(err);
-
     return err.response;
   }
 };

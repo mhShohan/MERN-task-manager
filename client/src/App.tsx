@@ -1,5 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 // mui
 import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
@@ -8,11 +9,17 @@ import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
 import privateRoutes from './routes/privateRoutes';
 import publicRoutes from './routes/publicRoutes';
 import theme from './theme/theme';
-import { useGetAuthQuery } from './store/features/authApi';
-import { ToastContainer } from 'react-toastify';
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { useEffect } from 'react';
+import { getAuth } from './store/services/authSlice';
 
 const App = () => {
-  const { isLoading, data } = useGetAuthQuery();
+  const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAuth());
+  }, []);
 
   if (isLoading) {
     return <LinearProgress />;
@@ -28,7 +35,7 @@ const App = () => {
         closeOnClick={true}
         pauseOnHover={false}
       />
-      <RouterProvider router={data?.data?.isAuthenticated ? privateRoutes : publicRoutes} />
+      <RouterProvider router={isAuthenticated ? privateRoutes : publicRoutes} />
     </ThemeProvider>
   );
 };

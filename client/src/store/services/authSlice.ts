@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import type { PayloadAction } from '@reduxjs/toolkit'
-import config from "../../utils/config";
-import { IUserLogin } from "../../interfaces/user.interface";
+import { verifyToken } from "../../utils/networkRequest";
 
 interface InitialState {
   isAuthenticated: boolean;
@@ -12,19 +10,19 @@ interface InitialState {
 
 const initialState: InitialState = {
   isAuthenticated: false,
-  isLoading: true,
+  isLoading: false,
   error: null
 };
 
-const getAuth = createAsyncThunk('auth/verify', async (payload: IUserLogin) => {
+export const getAuth = createAsyncThunk('auth', async () => {
   try {
-    const result = await axios.post(config.baseUrl + '/users/login', payload)
+    const result = await verifyToken('/users/authVerify')
 
     if (result.data.statusCode === 200 && result.data.success) {
-      localStorage.setItem('accessToken', result?.data?.data?.token)
+      return true
+    } else {
+      return false
     }
-
-    return true
   } catch (error) {
     return false
   }

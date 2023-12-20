@@ -1,20 +1,14 @@
 import axios from 'axios';
 import { createApi } from '@reduxjs/toolkit/query/react';
+import { toast } from 'react-toastify';
 
 // project import
 import config from '../../utils/config';
-import { verifyToken } from '../../utils/axios';
 import { IUserLogin } from '../../interfaces/user.interface';
-import { toast } from 'react-toastify';
 
-interface IAuth {
-  data: {
-    isAuthenticated: boolean;
-  };
-}
 
 const fetch = async () => {
-  return await verifyToken('/users/authVerify');
+  return await axios.get(config.baseUrl);
 };
 
 const login = async (payload: IUserLogin) => {
@@ -26,8 +20,8 @@ const login = async (payload: IUserLogin) => {
     }
 
     if (result.data.statusCode === 200 && result.data.success) {
-      window.location.reload();
       toast.success(result.data.message)
+      window.location.reload();
     }
 
     return result
@@ -48,9 +42,6 @@ export const authApi = createApi({
   baseQuery: fetch,
   tagTypes: ['auth'],
   endpoints: (builder) => ({
-    getAuth: builder.query<IAuth, void>({
-      query: () => '/',
-    }),
     login: builder.mutation({
       query: login,
       invalidatesTags: ['auth']
@@ -58,4 +49,4 @@ export const authApi = createApi({
   })
 });
 
-export const { useGetAuthQuery, useLoginMutation } = authApi;
+export const { useLoginMutation } = authApi;
