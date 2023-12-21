@@ -1,14 +1,13 @@
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import Add from '@mui/icons-material/AdUnits';
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material";
-
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap } from '@mui/material';
 
 export interface ILink {
-  id: number
-  name: string
-  link: string
-  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
+  id: number;
+  name: string;
+  link: string;
+  icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>;
 }
 
 export const sideBarData: Array<ILink> = [

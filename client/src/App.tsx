@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // mui
-import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 //project import
 import privateRoutes from './routes/privateRoutes';
@@ -12,6 +12,7 @@ import publicRoutes from './routes/publicRoutes';
 import theme from './theme/theme';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { getAuth } from './store/services/authSlice';
+import Loader from './components/Loader';
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
@@ -22,7 +23,7 @@ const App = () => {
   }, []);
 
   if (isLoading) {
-    return <LinearProgress />;
+    return <Loader fullPage={true} />;
   }
 
   return (

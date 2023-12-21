@@ -1,5 +1,11 @@
+import Loader from '../components/Loader';
+
 const Homepage = () => {
-  return <div>Homepage</div>;
+  return (
+    <div>
+      <Loader fullPage={false} />
+    </div>
+  );
 };
 
 export default Homepage;
