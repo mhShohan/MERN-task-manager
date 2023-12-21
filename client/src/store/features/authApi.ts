@@ -35,6 +35,8 @@ const login = async (payload: IUserLogin) => {
 const register = async (payload: IUser) => {
   try {
     const result = await axios.post(config.baseUrl + '/users/register', payload)
+    console.log(result);
+
 
     if (result?.data?.data?.token) {
       localStorage.setItem('accessToken', result?.data?.data?.token)

@@ -20,6 +20,7 @@ export interface IUser {
   description?: string;
   avatar?: string;
   status?: 'ACTIVE' | 'BLOCK';
+  role?: 'USER' | "ADMIN";
   address?: IAddress;
   links?: ISocialLinks;
 }

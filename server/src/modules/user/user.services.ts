@@ -4,8 +4,8 @@ import { IUser } from './user.interface';
 import User from './user.model';
 import StatusCode from '../../lib/StatusCode';
 
-const create = async (userData: IUser) => {
-  return await User.create(userData);
+const create = async (payload: IUser) => {
+  return await User.create(payload);
 };
 
 const login = async (payload: { email: string; password: string }) => {

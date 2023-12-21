@@ -4,7 +4,7 @@ import config from './config';
 
 async function connect() {
   try {
-    await mongoose.connect(config.database_url as string);
+    await mongoose.connect(config.database_url_cloud as string);
 
     console.log('Database Connected!');
 

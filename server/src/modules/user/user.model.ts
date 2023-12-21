@@ -55,6 +55,7 @@ const useSchema = new Schema<IUser>(
     description: { type: String },
     avatar: { type: String },
     status: { type: String, enum: ['ACTIVE', 'BLOCK'], default: 'ACTIVE' },
+    role: { type: String, enum: ['USER', 'ADMIN'], default: 'USER' },
     address: { type: addressSchema },
     links: { type: linksSchema },
   },

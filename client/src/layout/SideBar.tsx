@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 // mui
 import AppBar from '@mui/material/AppBar';
@@ -8,9 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -18,8 +16,8 @@ import { useTheme } from '@mui/material/styles';
 
 // project import
 import { sideBarData } from '../constants/constant';
-import { ListItem, ListItemIcon, ListItemText } from '../components/extends/SideBar';
 import { Button } from '@mui/material';
+import SideBarLink from '../components/SideBarLink';
 
 const drawerWidth = 240;
 
@@ -36,6 +34,7 @@ export default function SideBar(props: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -47,16 +46,7 @@ export default function SideBar(props: Props) {
       <Divider />
       <List sx={{ padding: 0 }}>
         {sideBarData.map((item) => (
-          <Link to={item.link} key={item.id} style={{ textDecoration: 'none' }}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary={item.name} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
+          <SideBarLink link={item} key={item.id} pathname={location.pathname} />
         ))}
       </List>
       <Divider />

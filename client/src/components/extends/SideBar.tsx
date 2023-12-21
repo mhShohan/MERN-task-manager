@@ -8,9 +8,14 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const ListItem = styled(MuiListItem)<ListItemProps>(({ theme }) => ({
+interface IListItem extends ListItemProps {
+  isActive: boolean;
+}
+
+export const ListItem = styled(MuiListItem)<IListItem>(({ theme, isActive }) => ({
   transition: 'all ease 300ms',
   borderBottom: `1px solid ${theme.palette.primary.light}`,
+  background: isActive ? theme.palette.primary.light : theme.palette.primary.main,
   '&:hover': {
     background: theme.palette.secondary.light,
     '& .MuiSvgIcon-root': {
