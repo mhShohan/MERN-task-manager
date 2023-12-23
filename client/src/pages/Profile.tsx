@@ -12,6 +12,7 @@ const Profile = () => {
         Name: {data?.firstName} {data?.lastName}
       </p>
       <p> Name: {data?.email}</p>
+      <p> Name: {data?.role}</p>
     </div>
   );
 };

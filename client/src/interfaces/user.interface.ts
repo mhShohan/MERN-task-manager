@@ -15,6 +15,7 @@ export interface IUser {
   lastName: string;
   email: string;
   password: string;
+  role: 'USER' | 'ADMIN';
   birthDate?: string;
   title?: string;
   description?: string;
