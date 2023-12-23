@@ -8,7 +8,7 @@ import userServices from './user.services';
 const register = asyncHandler(async (req, res) => {
   const user = await userServices.create(req.body);
 
-  const token = generateToken({ _id: user._id, email: user.email });
+  const token = generateToken({ _id: user._id, role: user.role!, email: user.email });
 
   sendResponse(res, {
     statusCode: StatusCode.CREATED,
@@ -29,10 +29,22 @@ const getSingleUser = asyncHandler(async (req, res) => {
   });
 });
 
+const getSelf = asyncHandler(async (req, res) => {
+  const user = await userServices.getUser(req.user._id);
+  if (!user) throw new CustomError(StatusCode.NOT_FOUND, 'User Not Found!', 'Unauthorize')
+
+  sendResponse(res, {
+    statusCode: StatusCode.OK,
+    success: true,
+    message: 'User retrieved successfully!',
+    data: user,
+  });
+});
+
 const login = asyncHandler(async (req, res) => {
   const user = await userServices.login(req.body);
 
-  const token = generateToken({ _id: user._id, email: user.email });
+  const token = generateToken({ _id: user._id, role: user.role!, email: user.email });
 
   sendResponse(res, {
     statusCode: StatusCode.OK,
@@ -67,6 +79,6 @@ const authVerification = asyncHandler(async (req, res) => {
   });
 });
 
-const userController = { register, getSingleUser, login, getAll, authVerification };
+const userController = { register, getSingleUser, login, getAll, authVerification, getSelf };
 
 export default userController;

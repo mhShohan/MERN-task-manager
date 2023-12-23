@@ -11,6 +11,7 @@ userRoutes.post(
   validateRequestZod(userValidator.validateToCreate),
   userController.register,
 );
+userRoutes.get('/self', verifyAuth, userController.getSelf);
 userRoutes.get('/authVerify', verifyAuth, userController.authVerification);
 userRoutes.get('/:id', userController.getSingleUser);
 userRoutes.get('/', userController.getAll);
