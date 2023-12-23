@@ -14,7 +14,7 @@ import {
   InputAdornment,
   InputLabel,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 
 //project import
@@ -28,7 +28,7 @@ const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const registerAccount = async (data: any) => {

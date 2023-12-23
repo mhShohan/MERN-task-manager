@@ -13,7 +13,7 @@ import {
   InputAdornment,
   InputLabel,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { useLoginMutation } from '../store/features/authApi';
 import Loader from './Loader';
@@ -27,7 +27,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const login = async (data: any) => {

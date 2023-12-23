@@ -29,17 +29,17 @@ export const taskApi = createApi({
     getTask: builder.query<ITask[], void>({
       query: () => '/',
       //   transformResponse: (res: ITask[]) => res.slice(0, 10), // transform the Response as your need
-      providesTags: ['Task'] // which tagsType use for
+      providesTags: ['Task'], // which tagsType use for
     }),
     createTask: builder.mutation({
       query: createTaskData,
-      invalidatesTags: ['Task']
+      invalidatesTags: ['Task'],
     }),
     deleteTask: builder.mutation({
       query: deleteTaskData,
-      invalidatesTags: ['Task']
-    })
-  })
+      invalidatesTags: ['Task'],
+    }),
+  }),
 });
 
 export const { useGetTaskQuery, useCreateTaskMutation, useDeleteTaskMutation } = taskApi;

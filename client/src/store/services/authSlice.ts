@@ -11,7 +11,7 @@ interface InitialState {
 const initialState: InitialState = {
   isAuthenticated: false,
   isLoading: false,
-  error: null
+  error: null,
 };
 
 export const getAuth = createAsyncThunk('auth', async () => {
@@ -45,7 +45,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || 'Unauthorized!';
       });
-  }
+  },
 });
 
 export default authSlice.reducer;

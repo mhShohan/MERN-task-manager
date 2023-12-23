@@ -58,13 +58,13 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: login,
-      invalidatesTags: ['auth']
+      invalidatesTags: ['auth'],
     }),
     register: builder.mutation({
       query: register,
-      invalidatesTags: ['auth']
-    })
-  })
+      invalidatesTags: ['auth'],
+    }),
+  }),
 });
 
 export const { useLoginMutation, useRegisterMutation } = authApi;

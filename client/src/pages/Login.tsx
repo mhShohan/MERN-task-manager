@@ -13,7 +13,7 @@ const Login = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         height: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
       }}
     >
       <Typography variant="h4" sx={{ fontWeight: '700' }}>

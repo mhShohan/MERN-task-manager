@@ -71,7 +71,7 @@ export default function SideBar(props: Props) {
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` }
+          ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -97,7 +97,7 @@ export default function SideBar(props: Props) {
         sx={{
           width: { sm: drawerWidth },
           flexShrink: { sm: 0 },
-          '& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper': { backgroundColor: theme.palette.primary.main }
+          '& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper': { backgroundColor: theme.palette.primary.main },
         }}
         aria-label="mailbox folders"
       >
@@ -108,11 +108,11 @@ export default function SideBar(props: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true // Better open performance on mobile.
+            keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
           {drawer}
@@ -121,7 +121,7 @@ export default function SideBar(props: Props) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
           open
         >

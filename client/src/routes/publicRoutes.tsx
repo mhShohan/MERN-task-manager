@@ -11,9 +11,9 @@ const publicRoutes = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       { path: '', element: <Login /> },
-      { path: 'register', element: <Register /> }
-    ]
-  }
+      { path: 'register', element: <Register /> },
+    ],
+  },
 ]);
 
 export default publicRoutes;

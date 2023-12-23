@@ -11,7 +11,7 @@ const Register = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        height: '100%'
+        height: '100%',
       }}
     >
       <Typography variant="h5" sx={{ marginBottom: '1rem', textAlign: 'center', fontWeight: '700' }}>

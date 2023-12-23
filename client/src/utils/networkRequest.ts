@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from './config';
 
 const axiosSecure = axios.create({
-  baseURL: config.baseUrl
+  baseURL: config.baseUrl,
 });
 
 axiosSecure.interceptors.request.use((conf) => {
@@ -24,5 +24,4 @@ export const verifyToken = async (url: string) => {
   }
 };
 
-
-export default axiosSecure
+export default axiosSecure;

@@ -28,13 +28,13 @@ const LoaderWrapperFull = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  height: '100vh'
+  height: '100vh',
 });
 const LoaderWrapper = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginTop: '2rem'
+  marginTop: '2rem',
 });
 
 export const Spinner = styled('span')(({ theme }) => ({
@@ -57,14 +57,14 @@ export const Spinner = styled('span')(({ theme }) => ({
     borderRadius: '50%',
     borderLeft: `10px solid ${theme.palette.secondary.main}`,
     borderBottom: '10px solid transparent',
-    animation: 'rotation 0.4s linear infinite reverse'
+    animation: 'rotation 0.4s linear infinite reverse',
   },
   '@keyframes rotation': {
     '0%': {
-      transform: 'rotate(0deg)'
+      transform: 'rotate(0deg)',
     },
     '100%': {
-      transform: 'rotate(360deg)'
-    }
-  }
+      transform: 'rotate(360deg)',
+    },
+  },
 }));

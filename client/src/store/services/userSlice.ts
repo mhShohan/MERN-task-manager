@@ -16,7 +16,7 @@ interface InitialState {
 const initialState: InitialState = {
   users: null,
   isLoading: true,
-  error: null
+  error: null,
 };
 
 // Async thunk to fetch users from the API
@@ -46,7 +46,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || 'Error To Fetch user';
       });
-  }
+  },
 });
 
 export default userSlice.reducer;
