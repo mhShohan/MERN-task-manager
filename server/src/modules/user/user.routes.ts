@@ -6,11 +6,7 @@ import verifyAuth from '../../middleware/verifyAuth';
 
 const userRoutes = Router();
 
-userRoutes.post(
-  '/register',
-  validateRequestZod(userValidator.validateToCreate),
-  userController.register,
-);
+userRoutes.post('/register', validateRequestZod(userValidator.validateToCreate), userController.register);
 userRoutes.get('/self', verifyAuth, userController.getSelf);
 userRoutes.get('/authVerify', verifyAuth, userController.authVerification);
 userRoutes.get('/:id', userController.getSingleUser);

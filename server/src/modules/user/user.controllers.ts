@@ -31,7 +31,7 @@ const getSingleUser = asyncHandler(async (req, res) => {
 
 const getSelf = asyncHandler(async (req, res) => {
   const user = await userServices.getUser(req.user._id);
-  if (!user) throw new CustomError(StatusCode.NOT_FOUND, 'User Not Found!', 'Unauthorize')
+  if (!user) throw new CustomError(StatusCode.NOT_FOUND, 'User Not Found!', 'Unauthorize');
 
   sendResponse(res, {
     statusCode: StatusCode.OK,
@@ -68,8 +68,7 @@ const getAll = asyncHandler(async (_req, res) => {
 const authVerification = asyncHandler(async (req, res) => {
   const user = await userServices.getUser(req.user._id);
 
-  if (!user)
-    throw new CustomError(StatusCode.UNAUTHORIZED, 'Unauthorize! please login', 'Unauthorize');
+  if (!user) throw new CustomError(StatusCode.UNAUTHORIZED, 'Unauthorize! please login', 'Unauthorize');
 
   sendResponse(res, {
     statusCode: StatusCode.OK,

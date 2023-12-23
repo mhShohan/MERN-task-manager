@@ -6,20 +6,10 @@ import verifyAuth from '../../middleware/verifyAuth';
 
 const teamRoutes = Router();
 
-teamRoutes.post(
-  '/',
-  verifyAuth,
-  validateRequestZod(teamValidator.createTeamSchema),
-  teamController.createTeam,
-);
+teamRoutes.post('/', verifyAuth, validateRequestZod(teamValidator.createTeamSchema), teamController.createTeam);
 teamRoutes.delete('/:id', verifyAuth, teamController.deleteTeam);
 teamRoutes.get('/self-teams', verifyAuth, teamController.GetAllTeam);
 
-teamRoutes.patch(
-  '/:id',
-  verifyAuth,
-  validateRequestZod(teamValidator.updateTeamSchema),
-  teamController.updateTeam,
-);
+teamRoutes.patch('/:id', verifyAuth, validateRequestZod(teamValidator.updateTeamSchema), teamController.updateTeam);
 
 export default teamRoutes;
