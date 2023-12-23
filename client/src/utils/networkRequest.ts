@@ -23,3 +23,6 @@ export const verifyToken = async (url: string) => {
     return err.response;
   }
 };
+
+
+export default axiosSecure

@@ -5,6 +5,7 @@ import SideBar from '../layout/SideBar';
 import Homepage from '../pages/Homepage';
 import Teams from '../pages/Teams';
 import Tasks from '../pages/Tasks';
+import Profile from '../pages/Profile';
 
 const privateRoutes = createBrowserRouter([
   {
@@ -13,18 +14,22 @@ const privateRoutes = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Homepage />
+        element: <Homepage />,
       },
       {
         path: '/teams',
-        element: <Teams />
+        element: <Teams />,
       },
       {
         path: '/tasks',
-        element: <Tasks />
-      }
-    ]
-  }
+        element: <Tasks />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+      },
+    ],
+  },
 ]);
 
 export default privateRoutes;

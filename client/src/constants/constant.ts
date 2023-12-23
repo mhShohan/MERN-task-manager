@@ -13,5 +13,6 @@ export interface ILink {
 export const sideBarData: Array<ILink> = [
   { id: 1, name: 'Dashboard', link: '/', icon: InboxIcon },
   { id: 2, name: 'Teams', link: '/teams', icon: Add },
-  { id: 3, name: 'Tasks', link: '/tasks', icon: InboxIcon }
+  { id: 3, name: 'Tasks', link: '/tasks', icon: InboxIcon },
+  { id: 4, name: 'Profile', link: '/profile', icon: InboxIcon },
 ];
