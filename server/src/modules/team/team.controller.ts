@@ -16,7 +16,7 @@ const createTeam = asyncHandler(async (req, res) => {
 });
 
 const deleteTeam = asyncHandler(async (req, res) => {
-  await teamServices.deleteTeam(req.params.id);
+  await teamServices.deleteTeam(req.params.id, req.user._id);
 
   sendResponse(res, {
     statusCode: 200,
