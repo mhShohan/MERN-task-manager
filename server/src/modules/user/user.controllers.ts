@@ -7,7 +7,6 @@ import userServices from './user.services';
 
 const register = asyncHandler(async (req, res) => {
   const user = await userServices.create(req.body);
-
   const token = generateToken({ _id: user._id, role: user.role!, email: user.email });
 
   sendResponse(res, {
@@ -19,7 +18,7 @@ const register = asyncHandler(async (req, res) => {
 });
 
 const getSingleUser = asyncHandler(async (req, res) => {
-  const user = await userServices.getUser(req.params.id);
+  const user = await userServices.getSingleById(req.params.id);
 
   sendResponse(res, {
     statusCode: StatusCode.OK,
@@ -30,7 +29,7 @@ const getSingleUser = asyncHandler(async (req, res) => {
 });
 
 const getSelf = asyncHandler(async (req, res) => {
-  const user = await userServices.getUser(req.user._id);
+  const user = await userServices.getSingleById(req.user._id);
   if (!user) throw new CustomError(StatusCode.NOT_FOUND, 'User Not Found!', 'Unauthorize');
 
   sendResponse(res, {
@@ -43,8 +42,7 @@ const getSelf = asyncHandler(async (req, res) => {
 
 const login = asyncHandler(async (req, res) => {
   const user = await userServices.login(req.body);
-
-  const token = generateToken({ _id: user._id, role: user.role!, email: user.email });
+  const token = generateToken({ _id: user._id, role: user.role, email: user.email });
 
   sendResponse(res, {
     statusCode: StatusCode.OK,
@@ -55,7 +53,7 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const getAll = asyncHandler(async (_req, res) => {
-  const users = await userServices.getAllUser();
+  const users = await userServices.getAll();
 
   sendResponse(res, {
     statusCode: StatusCode.OK,
@@ -66,7 +64,7 @@ const getAll = asyncHandler(async (_req, res) => {
 });
 
 const authVerification = asyncHandler(async (req, res) => {
-  const user = await userServices.getUser(req.user._id);
+  const user = await userServices.getSingleById(req.user._id);
 
   if (!user) throw new CustomError(StatusCode.UNAUTHORIZED, 'Unauthorize! please login', 'Unauthorize');
 

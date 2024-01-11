@@ -1,6 +1,6 @@
 import { Document, Model, FilterQuery, QueryOptions, UpdateQuery } from 'mongoose';
 
-class BaseService<T extends Document> {
+class BaseServiceDemo<T extends Document> {
   protected model: Model<T>;
 
   constructor(model: Model<T>) {
@@ -32,4 +32,4 @@ class BaseService<T extends Document> {
   }
 }
 
-export default BaseService;
+export default BaseServiceDemo;

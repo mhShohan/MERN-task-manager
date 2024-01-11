@@ -1,7 +1,8 @@
 import { Model } from 'mongoose';
+import CustomError from '../../errorHandler/customError';
 
 class BaseServices<T> {
-  public model: Model<T>;
+  protected model: Model<T>;
 
   constructor(model: Model<T>) {
     this.model = model;
@@ -13,7 +14,7 @@ class BaseServices<T> {
    * @returns
    */
   async create(payload: Record<string, unknown>) {
-    return await this.model.create(payload);
+    return this.model.create(payload);
   }
 
   /**
@@ -22,7 +23,9 @@ class BaseServices<T> {
    * @returns
    */
   async getSingleById(id: string) {
-    return await this.model.findById(id);
+    const data = await this.model.findById(id);
+    if (!data) throw new CustomError(404, 'Data is not fonund!')
+    return data
   }
 
   /**
@@ -31,7 +34,7 @@ class BaseServices<T> {
    * @returns
    */
   async getSingleByQuery(query: Record<string, unknown>) {
-    return await this.model.findOne(query);
+    return this.model.findOne(query);
   }
 
   /**
@@ -40,7 +43,7 @@ class BaseServices<T> {
    * @returns
    */
   async getAll(query: Record<string, unknown> = {}) {
-    return await this.model.find(query);
+    return this.model.find(query);
   }
 
   /**
@@ -51,7 +54,7 @@ class BaseServices<T> {
    */
 
   async update(id: string, payload: Record<string, unknown>) {
-    return await this.model.findByIdAndUpdate(id, payload);
+    return this.model.findByIdAndUpdate(id, payload, { new: true, runValidators: true });
   }
 
   /**
@@ -59,7 +62,7 @@ class BaseServices<T> {
    * @param id ObjectId
    */
   async delete(id: string) {
-    await this.model.findByIdAndDelete(id);
+    return this.model.findByIdAndDelete(id);
   }
 }
 
