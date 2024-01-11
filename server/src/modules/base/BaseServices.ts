@@ -24,7 +24,7 @@ class BaseServices<T> {
    */
   async getSingleById(id: string) {
     const data = await this.model.findById(id);
-    if (!data) throw new CustomError(404, 'Data is not fonund!')
+    if (!data) throw new CustomError(404, 'Data is not found!')
     return data
   }
 
