@@ -5,5 +5,5 @@ export interface ITask {
   description: string;
   teamId: Types.ObjectId;
   assignTo: Types.ObjectId;
-  deadLine: string;
+  deadLine?: Date;
 }
