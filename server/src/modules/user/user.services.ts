@@ -5,9 +5,9 @@ import User from './user.model';
 import StatusCode from '../../lib/StatusCode';
 import BaseService from '../base/BaseServices';
 
-class UserServices extends BaseService<any>{
+class UserServices extends BaseService<any> {
   constructor(model: any) {
-    super(model)
+    super(model);
   }
 
   async login(payload: { email: string; password: string }) {
@@ -21,9 +21,9 @@ class UserServices extends BaseService<any>{
     } else {
       throw new CustomError(StatusCode.BAD_REQUEST, 'User Not Found!', 'WrongCredentials');
     }
-  };
+  }
 }
 
-const userServices = new UserServices(User)
+const userServices = new UserServices(User);
 
 export default userServices;

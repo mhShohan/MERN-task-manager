@@ -30,17 +30,18 @@ const createTeam = async (payload: ITeam) => {
 };
 
 const deleteTeam = async (id: string, userId: string) => {
-  const team = await Team.findById(id)
-  if (!team) throw new CustomError(StatusCode.NOT_FOUND, 'Team not found!')
+  const team = await Team.findById(id);
+  if (!team) throw new CustomError(StatusCode.NOT_FOUND, 'Team not found!');
 
-  if (String(team.creatorId) !== userId) throw new CustomError(StatusCode.FORBIDDEN, 'Forbidden! You cannot delete this team!')
+  if (String(team.creatorId) !== userId)
+    throw new CustomError(StatusCode.FORBIDDEN, 'Forbidden! You cannot delete this team!');
 
-  const session = await mongoose.startSession()
+  const session = await mongoose.startSession();
 
   try {
-    await session.startTransaction()
+    await session.startTransaction();
     await Team.findByIdAndDelete(id, { session });
-    await TeamMember.deleteMany({ teamId: id }, { session })
+    await TeamMember.deleteMany({ teamId: id }, { session });
 
     await session.commitTransaction();
   } catch (error) {
@@ -49,7 +50,7 @@ const deleteTeam = async (id: string, userId: string) => {
   } finally {
     await session.endSession();
   }
-}
+};
 
 const updateTeamName = async (id: string, data: { name: string }) => {
   const team = await Team.findOne({ _id: id });
@@ -76,4 +77,4 @@ const teamServices = {
   getAllTeamOfCreator,
 };
 
-export default teamServices
+export default teamServices;
