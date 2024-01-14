@@ -4,7 +4,6 @@ import asyncHandler from '../../lib/asyncHandler';
 import sendResponse from '../../lib/sendResponse';
 import taskServices from './task.services';
 
-
 const create = asyncHandler(async (req, res) => {
   const result = await taskServices.create(req.body);
 
@@ -28,13 +27,13 @@ const update = asyncHandler(async (req, res) => {
 });
 
 const remove = asyncHandler(async (req, res) => {
-  const result = await taskServices.delete(req.params.id);
+  await taskServices.delete(req.params.id);
 
   sendResponse(res, {
     statusCode: StatusCode.OK,
     success: true,
     message: 'Task deleted successfully!',
-    data: result,
+    data: null,
   });
 });
 
@@ -50,8 +49,8 @@ const getSingle = asyncHandler(async (req, res) => {
 });
 
 const getAll = asyncHandler(async (req, res) => {
-  const team = req.query.team
-  if (!team) throw new CustomError(400, 'Must select a team')
+  const team = req.query.team;
+  if (!team) throw new CustomError(400, 'Must select a team');
   const results = await taskServices.getAll({ teamId: team });
 
   sendResponse(res, {

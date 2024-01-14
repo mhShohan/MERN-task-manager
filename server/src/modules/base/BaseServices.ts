@@ -1,5 +1,6 @@
 import { Model } from 'mongoose';
 import CustomError from '../../errorHandler/customError';
+import StatusCode from '../../lib/StatusCode';
 
 class BaseServices<T> {
   protected model: Model<T>;
@@ -23,9 +24,8 @@ class BaseServices<T> {
    * @returns
    */
   async getSingleById(id: string) {
-    const data = await this.model.findById(id);
-    if (!data) throw new CustomError(404, 'Data is not found!')
-    return data
+    await this._isExists(id);
+    return this.model.findById(id);
   }
 
   /**
@@ -54,6 +54,7 @@ class BaseServices<T> {
    */
 
   async update(id: string, payload: Record<string, unknown>) {
+    await this._isExists(id);
     return this.model.findByIdAndUpdate(id, payload, { new: true, runValidators: true });
   }
 
@@ -62,7 +63,18 @@ class BaseServices<T> {
    * @param id ObjectId
    */
   async delete(id: string) {
+    await this._isExists(id);
     return this.model.findByIdAndDelete(id);
+  }
+
+  /**
+   * Check data existence
+   * @param id
+   */
+  protected async _isExists(id: string) {
+    if (!(await this.model.findById(id))) {
+      throw new CustomError(StatusCode.NOT_FOUND, 'Data is not found!');
+    }
   }
 }
 

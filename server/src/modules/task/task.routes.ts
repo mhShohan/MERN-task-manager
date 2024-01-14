@@ -6,13 +6,12 @@ import verifyAuth from '../../middleware/verifyAuth';
 
 const taskRoutes = Router();
 
-taskRoutes.use(verifyAuth)
+taskRoutes.use(verifyAuth);
 
-taskRoutes.post('/', validateRequestZod(taskValidator.createSchema), taskController.create)
-taskRoutes.get('/', taskController.getAll)
-taskRoutes.get('/:id', taskController.getSingle)
-taskRoutes.delete('/:id', taskController.remove)
-taskRoutes.patch('/:id', validateRequestZod(taskValidator.updateSchema), taskController.remove)
-
+taskRoutes.post('/', validateRequestZod(taskValidator.createSchema), taskController.create);
+taskRoutes.get('/', taskController.getAll);
+taskRoutes.get('/:id', taskController.getSingle);
+taskRoutes.delete('/:id', taskController.remove);
+taskRoutes.patch('/:id', validateRequestZod(taskValidator.updateSchema), taskController.update);
 
 export default taskRoutes;
