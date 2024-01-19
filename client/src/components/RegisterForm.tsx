@@ -16,13 +16,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { useRegisterMutation } from '../store/features/authApi';
+import { useAppDispatch } from '../store/hooks';
+import { loginUser } from '../store/services/authSlice';
+import decodeToken from '../utils/decodeToken';
 
 //project import
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConformShowPassword] = useState(false);
+  const dispatch = useAppDispatch();
+  const [userRegistration] = useRegisterMutation();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -31,17 +38,26 @@ const RegisterForm = () => {
 
   const registerAccount = async (data: any) => {
     try {
-      const { firstName, lastName, email, password } = data;
-      if (data.password !== data.confirmPassword) {
+      const { firstName, lastName, email, password, confirmPassword } = data;
+      if (password !== confirmPassword) {
         toast.error('Confirm password must be same to the password!');
         return;
       }
 
-      // await registerMutation({ firstName, lastName, email, password });
+      const res = await userRegistration({ firstName, lastName, email, password }).unwrap();
+      const decode = decodeToken(res.data.token);
+
+      dispatch(
+        loginUser({
+          user: decode,
+          token: res.data.token,
+        }),
+      );
+
+      toast.success('Registered successfully!');
       navigate('/');
-      navigate(0);
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.data.errors[Object.keys(error.data.errors)[0]].message);
     }
   };
 

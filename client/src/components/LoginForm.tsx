@@ -44,14 +44,11 @@ const LoginForm = () => {
 
       dispatch(
         loginUser({
-          user: {
-            _id: decode._id,
-            email: decode.email,
-            role: decode.role,
-          },
+          user: decode,
           token: res.data.token,
         }),
       );
+
       toast.success('Login successfully!');
     } catch (error) {
       toast.error('Login Failed');
