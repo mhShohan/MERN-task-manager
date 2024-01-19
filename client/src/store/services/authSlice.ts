@@ -1,51 +1,41 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { verifyToken } from '../../utils/networkRequest';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+
+type TUser = {
+  _id: string
+  email: string
+  role: 'admin' | 'user'
+}
 
 interface InitialState {
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  error: null | string;
+  user: null | TUser
+  token: null | string
 }
 
 const initialState: InitialState = {
-  isAuthenticated: false,
-  isLoading: false,
-  error: null,
+  user: null,
+  token: null
 };
-
-export const getAuth = createAsyncThunk('auth', async () => {
-  try {
-    const result = await verifyToken('/users/authVerify');
-
-    if (result.data.statusCode === 200 && result.data.success) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    return false;
-  }
-});
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(getAuth.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getAuth.fulfilled, (state, action: PayloadAction<boolean>) => {
-        state.isLoading = false;
-        state.isAuthenticated = action.payload;
-      })
-      .addCase(getAuth.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || 'Unauthorized!';
-      });
-  },
+  reducers: {
+    loginUser: (state, action: PayloadAction<{ token: string, user: TUser }>) => {
+      state.user = action.payload.user
+      state.token = action.payload.token
+    },
+    logoutUser: (state) => {
+      state.user = null
+      state.token = null
+    },
+  }
 });
 
+export const { loginUser, logoutUser } = authSlice.actions
+
 export default authSlice.reducer;
+
+export const getUser = (state: RootState) => state.auth.user
+export const getToken = (state: RootState) => state.auth.token
+export const getUserRole = (state: RootState) => state.auth.user?.role
