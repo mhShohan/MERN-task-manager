@@ -24,16 +24,7 @@ import { toast } from 'react-toastify';
 
 const drawerWidth = 240;
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
-  window?: () => Window;
-}
-
-export default function SideBar(props: Props) {
-  const { window } = props;
+export default function SideBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
   const location = useLocation();
@@ -56,16 +47,10 @@ export default function SideBar(props: Props) {
     </div>
   );
 
-  /**
-   * Logout handler - remove accessToken from localStorage
-   */
   const handleLogout = () => {
     dispatch(logoutUser());
     toast.success('Logout Successfully!');
   };
-
-  // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -106,7 +91,6 @@ export default function SideBar(props: Props) {
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}

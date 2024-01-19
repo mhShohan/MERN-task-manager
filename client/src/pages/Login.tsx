@@ -1,11 +1,12 @@
 // mui
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 
 // project import
 import LoginForm from '../components/LoginForm';
 
 const Login = () => {
+  const theme = useTheme();
   return (
     <Box
       style={{
@@ -16,14 +17,22 @@ const Login = () => {
         textAlign: 'center',
       }}
     >
-      <Typography variant="h4" sx={{ fontWeight: '700' }}>
-        Welcome
-        <WavingHandIcon />
-      </Typography>
-      <Typography variant="body1" sx={{ marginBottom: '1rem', fontWeight: '500' }}>
-        Please Login Here!
-      </Typography>
-      <LoginForm />
+      <Box
+        sx={{
+          border: `1px solid ${theme.palette.primary.main}`,
+          padding: '2rem 4rem',
+          borderRadius: '.8rem',
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: '700' }}>
+          Welcome
+          <WavingHandIcon />
+        </Typography>
+        <Typography variant="body1" sx={{ marginBottom: '1rem', fontWeight: '500' }}>
+          Please Login Here!
+        </Typography>
+        <LoginForm />
+      </Box>
     </Box>
   );
 };
