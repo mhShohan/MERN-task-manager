@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,24 +6,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 //project import
+import Loader from './components/Loader';
 import privateRoutes from './routes/privateRoutes';
 import publicRoutes from './routes/publicRoutes';
 import theme from './theme/theme';
-import { useAppDispatch, useAppSelector } from './store/hooks';
-import { getAuth } from './store/services/authSlice';
-import Loader from './components/Loader';
+import { useAppSelector } from './store/hooks';
+import { getUser } from './store/services/authSlice';
 
 const App = () => {
-  const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+  const user = useAppSelector(getUser);
 
-  useEffect(() => {
-    dispatch(getAuth());
-  }, []);
-
-  if (isLoading) {
-    return <Loader fullPage={true} />;
-  }
+  // if (isLoading) {
+  //   return <Loader fullPage={true} />;
+  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -36,7 +30,7 @@ const App = () => {
         closeOnClick={true}
         pauseOnHover={false}
       />
-      <RouterProvider router={isAuthenticated ? privateRoutes : publicRoutes} />
+      <RouterProvider router={user ? privateRoutes : publicRoutes} />
     </ThemeProvider>
   );
 };

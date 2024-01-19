@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 // mui
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -16,35 +16,50 @@ import {
   Typography,
 } from '@mui/material';
 import { useLoginMutation } from '../store/features/authApi';
-import Loader from './Loader';
+import { useAppDispatch } from '../store/hooks';
+import { loginUser } from '../store/services/authSlice';
+import decodeToken from '../utils/decodeToken';
 import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loginAccount, { isLoading }] = useLoginMutation();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: 'mr@abc.com',
+      password: 'pass123',
+    },
+  });
 
-  const login = async (data: any) => {
+  const onSubmit = async (data: any) => {
     try {
-      await loginAccount(data);
-      navigate(0);
+      const res = await login(data).unwrap();
+      const decode = decodeToken(res.data.token);
+
+      dispatch(
+        loginUser({
+          user: {
+            _id: decode._id,
+            email: decode.email,
+            role: decode.role,
+          },
+          token: res.data.token,
+        }),
+      );
+      toast.success('Login successfully!');
     } catch (error) {
-      toast.error('Error');
+      toast.error('Login Failed');
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <form style={{ maxWidth: '100%' }} onSubmit={handleSubmit(login)}>
+    <form style={{ maxWidth: '100%' }} onSubmit={handleSubmit(onSubmit)}>
       <TextField
         fullWidth
         variant="filled"

@@ -18,12 +18,10 @@ import {
 } from '@mui/material';
 
 //project import
-import { useRegisterMutation } from '../store/features/authApi';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConformShowPassword] = useState(false);
-  const [registerMutation] = useRegisterMutation();
   const navigate = useNavigate();
   const {
     register,
@@ -39,7 +37,7 @@ const RegisterForm = () => {
         return;
       }
 
-      await registerMutation({ firstName, lastName, email, password });
+      // await registerMutation({ firstName, lastName, email, password });
       navigate('/');
       navigate(0);
     } catch (error: any) {

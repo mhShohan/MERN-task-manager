@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 // mui
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,32 +10,25 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 
 // project import
-import { sideBarData } from '../constants/constant';
 import { Button } from '@mui/material';
 import SideBarLink from '../components/SideBarLink';
+import { sideBarData } from '../constants/constant';
+import { useAppDispatch } from '../store/hooks';
+import { logoutUser } from '../store/services/authSlice';
+import { toast } from 'react-toastify';
 
 const drawerWidth = 240;
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
-  window?: () => Window;
-}
-
-export default function SideBar(props: Props) {
-  const { window } = props;
+export default function SideBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
-  const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -53,16 +47,10 @@ export default function SideBar(props: Props) {
     </div>
   );
 
-  /**
-   * Logout handler - remove accessToken from localStorage
-   */
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    navigate(0);
+    dispatch(logoutUser());
+    toast.success('Logout Successfully!');
   };
-
-  // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -85,7 +73,7 @@ export default function SideBar(props: Props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Task Manager
           </Typography>
           <Button onClick={handleLogout} variant="contained" color="info">
             Logout
@@ -103,7 +91,6 @@ export default function SideBar(props: Props) {
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
