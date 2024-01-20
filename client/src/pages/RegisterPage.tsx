@@ -3,9 +3,9 @@ import { Box, Typography, useTheme } from '@mui/material';
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 
 // project import
-import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 
-const Login = () => {
+const RegisterPage = () => {
   const theme = useTheme();
   return (
     <Box
@@ -14,27 +14,26 @@ const Login = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         height: '100%',
-        textAlign: 'center',
       }}
     >
       <Box
         sx={{
           border: `1px solid ${theme.palette.primary.main}`,
-          padding: '2rem 4rem',
+          padding: '2rem',
           borderRadius: '.8rem',
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: '700' }}>
+        <Typography variant="h4" sx={{ fontWeight: '700', textAlign: 'center' }}>
           Welcome
           <WavingHandIcon />
         </Typography>
-        <Typography variant="body1" sx={{ marginBottom: '1rem', fontWeight: '500' }}>
-          Please Login Here!
+        <Typography variant="h5" sx={{ marginBottom: '1rem', textAlign: 'center', fontWeight: '700' }}>
+          Register A New Account!
         </Typography>
-        <LoginForm />
+        <RegisterForm />
       </Box>
     </Box>
   );
 };
 
-export default Login;
+export default RegisterPage;

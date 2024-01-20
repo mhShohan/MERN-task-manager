@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // mui
 import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,12 +17,10 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 
 // project import
-import { Button } from '@mui/material';
 import SideBarLink from '../components/SideBarLink';
 import { sideBarData } from '../constants/constant';
 import { useAppDispatch } from '../store/hooks';
 import { logoutUser } from '../store/services/authSlice';
-import { toast } from 'react-toastify';
 
 const drawerWidth = 240;
 

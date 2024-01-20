@@ -1,12 +1,14 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 // project import
-import SideBar from '../layout/SideBar';
-import Homepage from '../pages/Homepage';
-import Teams from '../pages/Teams';
-import Tasks from '../pages/Tasks';
-import Profile from '../pages/Profile';
+import Loadable from '../components/Loadable';
 import ProtectedRoute from '../layout/ProtectedRoute';
+import SideBar from '../layout/SideBar';
+const Homepage = Loadable(lazy(() => import('../pages/Homepage')));
+const TeamPage = Loadable(lazy(() => import('../pages/TeamPage')));
+const TaskPage = Loadable(lazy(() => import('../pages/TaskPage')));
+const ProfilePage = Loadable(lazy(() => import('../pages/ProfilePage')));
 
 const privateRoutes = createBrowserRouter([
   {
@@ -17,7 +19,7 @@ const privateRoutes = createBrowserRouter([
         path: '/',
         element: (
           <ProtectedRoute>
-            <Homepage />,
+            <Homepage />
           </ProtectedRoute>
         ),
       },
@@ -25,7 +27,7 @@ const privateRoutes = createBrowserRouter([
         path: '/teams',
         element: (
           <ProtectedRoute>
-            <Teams />,
+            <TeamPage />
           </ProtectedRoute>
         ),
       },
@@ -33,7 +35,7 @@ const privateRoutes = createBrowserRouter([
         path: '/tasks',
         element: (
           <ProtectedRoute>
-            <Tasks />,
+            <TaskPage />
           </ProtectedRoute>
         ),
       },
@@ -41,7 +43,7 @@ const privateRoutes = createBrowserRouter([
         path: '/profile',
         element: (
           <ProtectedRoute>
-            <Profile />,
+            <ProfilePage />
           </ProtectedRoute>
         ),
       },

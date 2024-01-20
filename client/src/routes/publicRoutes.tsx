@@ -1,21 +1,23 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 // project import
-import Login from '../pages/Login';
-import AuthLayout from '../layout/AuthLayout';
-import Register from '../pages/Register';
-import NotFound from '../pages/NotFound';
+import Loadable from '../components/Loadable';
+const LoginPage = Loadable(lazy(() => import('../pages/LoginPage')));
+const RegisterPage = Loadable(lazy(() => import('../pages/RegisterPage')));
+const AuthLayout = Loadable(lazy(() => import('../layout/AuthLayout')));
+const NotFoundPage = Loadable(lazy(() => import('../pages/NotFoundPage')));
 
 const publicRoutes = createBrowserRouter([
   {
     path: '/',
     element: <AuthLayout />,
     children: [
-      { path: '', element: <Login /> },
-      { path: 'register', element: <Register /> },
+      { path: '', element: <LoginPage /> },
+      { path: 'register', element: <RegisterPage /> },
     ],
   },
-  { path: '*', element: <NotFound /> },
+  { path: '*', element: <NotFoundPage /> },
 ]);
 
 export default publicRoutes;
