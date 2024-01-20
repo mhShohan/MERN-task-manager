@@ -6,6 +6,7 @@ import Homepage from '../pages/Homepage';
 import Teams from '../pages/Teams';
 import Tasks from '../pages/Tasks';
 import Profile from '../pages/Profile';
+import ProtectedRoute from '../layout/ProtectedRoute';
 
 const privateRoutes = createBrowserRouter([
   {
@@ -14,19 +15,35 @@ const privateRoutes = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Homepage />,
+        element: (
+          <ProtectedRoute>
+            <Homepage />,
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/teams',
-        element: <Teams />,
+        element: (
+          <ProtectedRoute>
+            <Teams />,
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/tasks',
-        element: <Tasks />,
+        element: (
+          <ProtectedRoute>
+            <Tasks />,
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />,
+          </ProtectedRoute>
+        ),
       },
     ],
   },

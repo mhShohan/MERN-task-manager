@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 // mui
 import MenuIcon from '@mui/icons-material/Menu';
@@ -29,6 +29,7 @@ export default function SideBar() {
   const theme = useTheme();
   const location = useLocation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -49,6 +50,7 @@ export default function SideBar() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    navigate('/');
     toast.success('Logout Successfully!');
   };
 

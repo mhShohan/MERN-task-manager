@@ -6,26 +6,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 //project import
-import Loader from './components/Loader';
 import privateRoutes from './routes/privateRoutes';
 import publicRoutes from './routes/publicRoutes';
 import theme from './theme/theme';
 import { useAppSelector } from './store/hooks';
-import { getUser } from './store/services/authSlice';
+import { getCurrentUser } from './store/services/authSlice';
 
 const App = () => {
-  const user = useAppSelector(getUser);
-
-  // if (isLoading) {
-  //   return <Loader fullPage={true} />;
-  // }
+  const user = useAppSelector(getCurrentUser);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ToastContainer
         position="bottom-right"
-        autoClose={5000}
+        autoClose={1000}
         hideProgressBar={false}
         closeOnClick={true}
         pauseOnHover={false}
