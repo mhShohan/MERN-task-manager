@@ -8,9 +8,9 @@ const AuthLayout = () => {
   const theme = useTheme();
 
   return (
-    <Box sx={{ bgcolor: theme.palette.primary.light, height: '100vh' }}>
+    <Box sx={{ bgcolor: theme.palette.primary.light, minHeight: '100vh' }}>
       <Container>
-        <Grid container sx={{ height: '100vh' }}>
+        <Grid container sx={{ minHeight: '100vh' }}>
           <Grid item xs={12} md={7}>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
               <Box sx={{ textAlign: 'center' }}>
@@ -24,7 +24,7 @@ const AuthLayout = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={5} padding="2rem 0">
             <Outlet />
           </Grid>
         </Grid>

@@ -22,14 +22,15 @@ const Loader = ({ fullPage = true }: LoaderProps) => {
 
 export default Loader;
 
-const LoaderWrapperFull = styled('div')({
-  backgroundColor: 'lightcyan',
+const LoaderWrapperFull = styled('div')(({ theme }) => ({
+  bgcolor: theme.palette.primary.light,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
   height: '100vh',
-});
+}));
+
 const LoaderWrapper = styled('div')({
   display: 'flex',
   justifyContent: 'center',
