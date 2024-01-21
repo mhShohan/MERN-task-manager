@@ -2,11 +2,11 @@ import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 // project import
-import Loadable from '../components/Loadable';
-const LoginPage = Loadable(lazy(() => import('../pages/LoginPage')));
-const RegisterPage = Loadable(lazy(() => import('../pages/RegisterPage')));
-const AuthLayout = Loadable(lazy(() => import('../layout/AuthLayout')));
-const NotFoundPage = Loadable(lazy(() => import('../pages/NotFoundPage')));
+import withSuspense from '../components/HOC/withSuspense';
+const LoginPage = withSuspense(lazy(() => import('../pages/LoginPage')));
+const RegisterPage = withSuspense(lazy(() => import('../pages/RegisterPage')));
+const AuthLayout = withSuspense(lazy(() => import('../layout/AuthLayout')));
+const NotFoundPage = withSuspense(lazy(() => import('../pages/NotFoundPage')));
 
 const publicRoutes = createBrowserRouter([
   {

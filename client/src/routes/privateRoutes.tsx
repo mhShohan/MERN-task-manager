@@ -2,13 +2,13 @@ import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 // project import
-import Loadable from '../components/Loadable';
+import withSuspense from '../components/HOC/withSuspense';
 import ProtectedRoute from '../layout/ProtectedRoute';
 import SideBar from '../layout/SideBar';
-const Homepage = Loadable(lazy(() => import('../pages/Homepage')));
-const TeamPage = Loadable(lazy(() => import('../pages/TeamPage')));
-const TaskPage = Loadable(lazy(() => import('../pages/TaskPage')));
-const ProfilePage = Loadable(lazy(() => import('../pages/ProfilePage')));
+const Homepage = withSuspense(lazy(() => import('../pages/Homepage')));
+const TeamPage = withSuspense(lazy(() => import('../pages/TeamPage')));
+const TaskPage = withSuspense(lazy(() => import('../pages/TaskPage')));
+const ProfilePage = withSuspense(lazy(() => import('../pages/ProfilePage')));
 
 const privateRoutes = createBrowserRouter([
   {
